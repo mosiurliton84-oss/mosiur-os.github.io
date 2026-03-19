@@ -1,8 +1,10 @@
+// Clock
 function updateTime() {
     document.getElementById('time').textContent = new Date().toLocaleTimeString('bn-BD');
 }
 setInterval(updateTime, 1000); updateTime();
 
+// Window Controls
 function openApp(appId) {
     document.getElementById(appId).classList.remove('hidden');
     document.getElementById(appId).classList.add('active');
@@ -21,35 +23,74 @@ function maximizeApp(appId) {
     const app = document.getElementById(appId);
     if (app.style.width === '95vw') {
         app.style.width = '800px'; app.style.height = '600px';
+        app.style.transform = 'translate(-50%, -50%)';
     } else {
         app.style.width = '95vw'; app.style.height = '95vh';
+        app.style.transform = 'none';
+        app.style.left = '2.5vw';
+        app.style.top = '2.5vh';
     }
 }
 
 function toggleStartMenu() {
-    document.querySelector('.start-menu').style.background = 'rgba(255,255,255,0.25)';
-    setTimeout(() => document.querySelector('.start-menu').style.background = '', 200);
+    const startMenu = document.querySelector('.start-menu');
+    startMenu.style.background = 'rgba(255,255,255,0.25)';
+    setTimeout(() => startMenu.style.background = '', 200);
 }
 
-// Drag functionality
+// Browser Tab System
+function loadWebsite(site) {
+    const iframe = document.getElementById('browser-frame');
+    const urlSpan = document.getElementById('current-url');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    
+    tabBtns.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    if (site === 'youtube') {
+        iframe.src = 'https://www.youtube.com';
+        urlSpan.textContent = '🔒 https://www.youtube.com';
+    } else if (site === 'github') {
+        iframe.src = 'https://github.com';
+        urlSpan.textContent = '🔒 https://github.com';
+    } else if (site === 'wikipedia') {
+        iframe.src = 'https://www.wikipedia.org';
+        urlSpan.textContent = '🔒 https://wikipedia.org';
+    }
+}
+
+// Drag Windows
 let draggedElement = null, offsetX = 0, offsetY = 0;
 function startDrag(e, appId) {
     draggedElement = document.getElementById(appId);
     const rect = draggedElement.getBoundingClientRect();
-    offsetX = e.clientX - rect.left; offsetY = e.clientY - rect.top;
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', stopDrag);
 }
+
 function drag(e) {
     if (draggedElement) {
         draggedElement.style.position = 'fixed';
         draggedElement.style.left = (e.clientX - offsetX) + 'px';
         draggedElement.style.top = (e.clientY - offsetY) + 'px';
         draggedElement.style.transform = 'none';
+        draggedElement.style.margin = '0';
     }
 }
+
 function stopDrag() {
     document.removeEventListener('mousemove', drag);
     document.removeEventListener('mouseup', stopDrag);
     draggedElement = null;
 }
+
+// ESC to close apps
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.app-window.active').forEach(app => {
+            closeApp(app.id);
+        });
+    }
+});
