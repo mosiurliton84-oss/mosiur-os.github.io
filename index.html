@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mosiur OS - Windows 11 এর চেয়ে ভালো</title>
     <!-- Online Windows 11 Logo -->
     <link rel="icon" href="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/windows-11-icon.png">
@@ -18,7 +18,7 @@
             <div class="time" id="time"></div>
         </div>
         
-        <!-- Desktop Icons - Online Logos -->
+        <!-- Desktop Icons -->
         <div class="icon" onclick="openApp('chrome')">
             <img src="https://www.google.com/images/branding/product/ico/goog_g_64dp.png" alt="Chrome" class="icon-img">
             <span>Chrome</span>
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <!-- Google Chrome Browser -->
+    <!-- Google Chrome Browser (Fixed) -->
     <div class="app-window hidden" id="chrome">
         <div class="titlebar" onmousedown="startDrag(event, 'chrome')">
             <span>🟢 Google Chrome</span>
@@ -44,10 +44,15 @@
             </div>
         </div>
         <div class="content chrome-content">
-            <div class="chrome-addrbar">
-                <span>🔒 https://www.google.com</span>
+            <div class="chrome-tabs">
+                <button class="tab-btn active" onclick="loadWebsite('youtube')">YouTube</button>
+                <button class="tab-btn" onclick="loadWebsite('github')">GitHub</button>
+                <button class="tab-btn" onclick="loadWebsite('wikipedia')">Wikipedia</button>
             </div>
-            <iframe src="https://www.google.com" width="100%" height="450px" frameborder="0"></iframe>
+            <div class="chrome-addrbar">
+                <span id="current-url">🔒 https://www.youtube.com</span>
+            </div>
+            <iframe id="browser-frame" src="https://www.youtube.com" width="100%" height="450px" frameborder="0"></iframe>
         </div>
     </div>
 
@@ -62,8 +67,9 @@
             </div>
         </div>
         <div class="content">
-            <h2>🎮 Game Hub Ready!</h2>
-            <iframe src="https://emulatorjs.org" width="100%" height="400px" frameborder="0"></iframe>
+            <h2>🎮 Game Hub - Emulator Ready!</h2>
+            <p>Free games এখানে: <a href="https://emulatorjs.org" target="_blank">EmulatorJS</a></p>
+            <iframe src="https://www.freeonlinegames.com" width="100%" height="400px" frameborder="0"></iframe>
         </div>
     </div>
 
@@ -80,9 +86,13 @@
         <div class="content">
             <h2>🌟 Mosiur OS v1.0</h2>
             <p><b>👨‍💻 Creator:</b> Mosiur Rahman<br>
-            <b>📍 Location:</b> Dhaka, Bangladesh<br>
-            <b>💻 Tech:</b> HTML5 + CSS3 + JavaScript<br>
-            <b>🚀 Status:</b> Windows 11 এর চেয়ে Better!</p>
+            <b>📍 Location:</b> Dhaka, Bangladesh 🇧🇩<br>
+            <b>💻 Tech:</b> HTML5 + CSS3 + Vanilla JavaScript<br>
+            <b>🚀 Features:</b> Chrome Browser + GameHub + Drag Windows<br>
+            <b>📊 Status:</b> Windows 11 এর চেয়ে Better & Free!</p>
+            <p style="text-align: center; margin-top: 20px;">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/windows-11-icon.png" alt="Mosiur OS" style="width:80px;">
+            </p>
         </div>
     </div>
 
