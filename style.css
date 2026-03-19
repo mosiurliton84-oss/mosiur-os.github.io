@@ -1,0 +1,30 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; height: 100vh; overflow: hidden; }
+.desktop { 
+    background: linear-gradient(to bottom, #0f0f0f, #1a1a1a); 
+    height: 100vh; 
+    position: relative; 
+    padding: 20px; 
+    color: white; 
+}
+.taskbar { 
+    position: fixed; bottom: 0; left: 0; right: 0; 
+    height: 40px; background: rgba(0,0,0,0.9); 
+    display: flex; align-items: center; justify-content: space-between; 
+    padding: 0 20px; 
+}
+.start-menu { cursor: pointer; padding: 10px; }
+.time { font-size: 14px; }
+.icon { 
+    display: inline-flex; flex-direction: column; align-items: center; 
+    cursor: pointer; margin: 20px; 
+}
+.icon img { width: 50px; height: 50px; border-radius: 10px; }
+.app-window { 
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+    width: 600px; height: 400px; background: white; border-radius: 10px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; 
+}
+.titlebar { background: #0078d4; color: white; padding: 10px; display: flex; justify-content: space-between; border-radius: 10px 10px 0 0; }
+.content { padding: 20px; height: calc(100% - 50px); overflow: auto; }
+.hidden { display: none !important; }

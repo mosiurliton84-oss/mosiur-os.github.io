@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosiur OS - Better than Windows 11</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="desktop" id="desktop">
+        <div class="taskbar">
+            <div class="start-menu">Start</div>
+            <div class="time" id="time"></div>
+        </div>
+        <div class="icon" onclick="openApp('gamehub')">
+            <img src="https://via.placeholder.com/50?text=GameHub" alt="GameHub">
+            <span>GameHub</span>
+        </div>
+        <div class="icon" onclick="openApp('browser')">
+            <img src="https://via.placeholder.com/50?text=Browser" alt="Browser">
+            <span>Browser</span>
+        </div>
+    </div>
+    <div class="app-window hidden" id="gamehub">
+        <div class="titlebar">
+            <span>GameHub Emulator</span>
+            <button onclick="closeApp('gamehub')">X</button>
+        </div>
+        <div class="content">
+            <h2>Game Hub - Emulator</h2>
+            <p>এখানে EmulatorJS যোগ করুন: <a href="https://emulatorjs.org" target="_blank">EmulatorJS</a></p>
+            <!-- EmulatorJS embed করুন free-তে -->
+        </div>
+    </div>
+    <div class="app-window hidden" id="browser">
+        <div class="titlebar">
+            <span>Web Browser</span>
+            <button onclick="closeApp('browser')">X</button>
+        </div>
+        <div class="content">
+            <iframe src="https://google.com" width="100%" height="400"></iframe>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
