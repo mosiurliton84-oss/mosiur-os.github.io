@@ -3,44 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mosiur OS - Better than Windows 11</title>
+    <title>Mosiur OS - Windows 11 এর চেয়ে ভালো</title>
+    <link rel="icon" type="image/jpg" href="windows-logo.jpg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="desktop" id="desktop">
         <div class="taskbar">
-            <div class="start-menu">Start</div>
+            <div class="start-menu" onclick="toggleStartMenu()">
+                <img src="windows-logo.jpg" alt="Start" class="start-logo">
+                Start
+            </div>
             <div class="time" id="time"></div>
         </div>
+        
+        <!-- Desktop Icons -->
         <div class="icon" onclick="openApp('gamehub')">
-            <img src="https://via.placeholder.com/50?text=GameHub" alt="GameHub">
+            <img src="windows-logo.jpg" alt="GameHub" class="icon-img">
             <span>GameHub</span>
         </div>
         <div class="icon" onclick="openApp('browser')">
-            <img src="https://via.placeholder.com/50?text=Browser" alt="Browser">
+            <img src="windows-logo.jpg" alt="Browser" class="icon-img">
             <span>Browser</span>
         </div>
+        <div class="icon" onclick="openApp('about')">
+            <img src="windows-logo.jpg" alt="About" class="icon-img">
+            <span>About</span>
+        </div>
     </div>
+
+    <!-- GameHub App -->
     <div class="app-window hidden" id="gamehub">
-        <div class="titlebar">
-            <span>GameHub Emulator</span>
-            <button onclick="closeApp('gamehub')">X</button>
+        <div class="titlebar" onmousedown="startDrag(event, 'gamehub')">
+            <span>🎮 GameHub Emulator</span>
+            <div>
+                <button class="window-btn" onclick="minimizeApp('gamehub')">−</button>
+                <button class="window-btn" onclick="maximizeApp('gamehub')">□</button>
+                <button class="window-btn close-btn" onclick="closeApp('gamehub')">✕</button>
+            </div>
         </div>
         <div class="content">
-            <h2>Game Hub - Emulator</h2>
-            <p>এখানে EmulatorJS যোগ করুন: <a href="https://emulatorjs.org" target="_blank">EmulatorJS</a></p>
-            <!-- EmulatorJS embed করুন free-তে -->
+            <h2>GameHub - Emulator Ready!</h2>
+            <p>EmulatorJS embed করুন:</p>
+            <iframe src="https://emulatorjs.org" width="100%" height="400px"></iframe>
+            <br><small>Free game emulator platform</small>
         </div>
     </div>
+
+    <!-- Browser App -->
     <div class="app-window hidden" id="browser">
-        <div class="titlebar">
-            <span>Web Browser</span>
-            <button onclick="closeApp('browser')">X</button>
+        <div class="titlebar" onmousedown="startDrag(event, 'browser')">
+            <span>🌐 Web Browser</span>
+            <div>
+                <button class="window-btn" onclick="minimizeApp('browser')">−</button>
+                <button class="window-btn" onclick="maximizeApp('browser')">□</button>
+                <button class="window-btn close-btn" onclick="closeApp('browser')">✕</button>
+            </div>
         </div>
         <div class="content">
-            <iframe src="https://google.com" width="100%" height="400"></iframe>
+            <iframe src="https://google.com" width="100%" height="450px"></iframe>
         </div>
     </div>
+
+    <!-- About App -->
+    <div class="app-window hidden" id="about">
+        <div class="titlebar" onmousedown="startDrag(event, 'about')">
+            <span>ℹ️ About Mosiur OS</span>
+            <div>
+                <button class="window-btn" onclick="minimizeApp('about')">−</button>
+                <button class="window-btn" onclick="maximizeApp('about')">□</button>
+                <button class="window-btn close-btn" onclick="closeApp('about')">✕</button>
+            </div>
+        </div>
+        <div class="content">
+            <h2>🌟 Mosiur OS v1.0</h2>
+            <p><b>Made by:</b> Mosiur Rahman<br>
+            <b>From:</b> Dhaka, Bangladesh<br>
+            <b>Tech:</b> HTML5 + CSS3 + Vanilla JS<br>
+            <b>Status:</b> Windows 11 এর চেয়ে Better! 🚀</p>
+            <img src="windows-logo.jpg" alt="Mosiur OS Logo" style="width:100px;">
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
