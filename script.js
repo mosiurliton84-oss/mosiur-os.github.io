@@ -38,25 +38,18 @@ function toggleStartMenu() {
     setTimeout(() => startMenu.style.background = '', 200);
 }
 
-// Browser Tab System
-function loadWebsite(site) {
-    const iframe = document.getElementById('browser-frame');
-    const urlSpan = document.getElementById('current-url');
+// External Links (iframe bypass)
+function openExternal(url) {
     const tabBtns = document.querySelectorAll('.tab-btn');
-    
     tabBtns.forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
     
-    if (site === 'youtube') {
-        iframe.src = 'https://www.youtube.com';
-        urlSpan.textContent = '🔒 https://www.youtube.com';
-    } else if (site === 'github') {
-        iframe.src = 'https://github.com';
-        urlSpan.textContent = '🔒 https://github.com';
-    } else if (site === 'wikipedia') {
-        iframe.src = 'https://www.wikipedia.org';
-        urlSpan.textContent = '🔒 https://wikipedia.org';
-    }
+    const urlSpan = document.getElementById('current-url');
+    const hostname = new URL(url).hostname;
+    urlSpan.textContent = '🔗 Opening ' + hostname;
+    
+    // New tab এ খুলবে
+    window.open(url, '_blank');
 }
 
 // Drag Windows
@@ -86,7 +79,7 @@ function stopDrag() {
     draggedElement = null;
 }
 
-// ESC to close apps
+// ESC to close all apps
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         document.querySelectorAll('.app-window.active').forEach(app => {
