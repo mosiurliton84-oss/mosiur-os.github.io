@@ -2,40 +2,59 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device=device-width, initial-scale=1.0">
     <title>Mosiur OS - Windows 11 এর চেয়ে ভালো</title>
-    <link rel="icon" type="image/jpg" href="windows-logo.jpg">
+    <!-- Online Windows 11 Logo -->
+    <link rel="icon" href="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/windows-11-icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="desktop" id="desktop">
         <div class="taskbar">
             <div class="start-menu" onclick="toggleStartMenu()">
-                <img src="windows-logo.jpg" alt="Start" class="start-logo">
-                Start
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/windows-11-icon.png" alt="Start" class="start-logo">
+                <span>Start</span>
             </div>
             <div class="time" id="time"></div>
         </div>
         
-        <!-- Desktop Icons -->
+        <!-- Desktop Icons - Online Logos -->
+        <div class="icon" onclick="openApp('chrome')">
+            <img src="https://www.google.com/images/branding/product/ico/goog_g_64dp.png" alt="Chrome" class="icon-img">
+            <span>Chrome</span>
+        </div>
         <div class="icon" onclick="openApp('gamehub')">
-            <img src="windows-logo.jpg" alt="GameHub" class="icon-img">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/gaming-gadgets/gamepad-icon.png" alt="GameHub" class="icon-img">
             <span>GameHub</span>
         </div>
-        <div class="icon" onclick="openApp('browser')">
-            <img src="windows-logo.jpg" alt="Browser" class="icon-img">
-            <span>Browser</span>
-        </div>
         <div class="icon" onclick="openApp('about')">
-            <img src="windows-logo.jpg" alt="About" class="icon-img">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/30-information-security-icons/information-icon.png" alt="About" class="icon-img">
             <span>About</span>
         </div>
     </div>
 
-    <!-- GameHub App -->
+    <!-- Google Chrome Browser -->
+    <div class="app-window hidden" id="chrome">
+        <div class="titlebar" onmousedown="startDrag(event, 'chrome')">
+            <span>🟢 Google Chrome</span>
+            <div>
+                <button class="window-btn" onclick="minimizeApp('chrome')">−</button>
+                <button class="window-btn" onclick="maximizeApp('chrome')">□</button>
+                <button class="window-btn close-btn" onclick="closeApp('chrome')">✕</button>
+            </div>
+        </div>
+        <div class="content chrome-content">
+            <div class="chrome-addrbar">
+                <span>🔒 https://www.google.com</span>
+            </div>
+            <iframe src="https://www.google.com" width="100%" height="450px" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- GameHub -->
     <div class="app-window hidden" id="gamehub">
         <div class="titlebar" onmousedown="startDrag(event, 'gamehub')">
-            <span>🎮 GameHub Emulator</span>
+            <span>🎮 GameHub</span>
             <div>
                 <button class="window-btn" onclick="minimizeApp('gamehub')">−</button>
                 <button class="window-btn" onclick="maximizeApp('gamehub')">□</button>
@@ -43,32 +62,15 @@
             </div>
         </div>
         <div class="content">
-            <h2>GameHub - Emulator Ready!</h2>
-            <p>EmulatorJS embed করুন:</p>
-            <iframe src="https://emulatorjs.org" width="100%" height="400px"></iframe>
-            <br><small>Free game emulator platform</small>
+            <h2>🎮 Game Hub Ready!</h2>
+            <iframe src="https://emulatorjs.org" width="100%" height="400px" frameborder="0"></iframe>
         </div>
     </div>
 
-    <!-- Browser App -->
-    <div class="app-window hidden" id="browser">
-        <div class="titlebar" onmousedown="startDrag(event, 'browser')">
-            <span>🌐 Web Browser</span>
-            <div>
-                <button class="window-btn" onclick="minimizeApp('browser')">−</button>
-                <button class="window-btn" onclick="maximizeApp('browser')">□</button>
-                <button class="window-btn close-btn" onclick="closeApp('browser')">✕</button>
-            </div>
-        </div>
-        <div class="content">
-            <iframe src="https://google.com" width="100%" height="450px"></iframe>
-        </div>
-    </div>
-
-    <!-- About App -->
+    <!-- About -->
     <div class="app-window hidden" id="about">
         <div class="titlebar" onmousedown="startDrag(event, 'about')">
-            <span>ℹ️ About Mosiur OS</span>
+            <span>ℹ️ Mosiur OS</span>
             <div>
                 <button class="window-btn" onclick="minimizeApp('about')">−</button>
                 <button class="window-btn" onclick="maximizeApp('about')">□</button>
@@ -77,11 +79,10 @@
         </div>
         <div class="content">
             <h2>🌟 Mosiur OS v1.0</h2>
-            <p><b>Made by:</b> Mosiur Rahman<br>
-            <b>From:</b> Dhaka, Bangladesh<br>
-            <b>Tech:</b> HTML5 + CSS3 + Vanilla JS<br>
-            <b>Status:</b> Windows 11 এর চেয়ে Better! 🚀</p>
-            <img src="windows-logo.jpg" alt="Mosiur OS Logo" style="width:100px;">
+            <p><b>👨‍💻 Creator:</b> Mosiur Rahman<br>
+            <b>📍 Location:</b> Dhaka, Bangladesh<br>
+            <b>💻 Tech:</b> HTML5 + CSS3 + JavaScript<br>
+            <b>🚀 Status:</b> Windows 11 এর চেয়ে Better!</p>
         </div>
     </div>
 
