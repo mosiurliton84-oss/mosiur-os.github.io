@@ -1,60 +1,30 @@
-body {
-margin:0;
-font-family:sans-serif;
-background:linear-gradient(135deg,#1e1e2f,#111);
-color:white;
-overflow:hidden;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; height: 100vh; overflow: hidden; }
+.desktop { 
+    background: linear-gradient(to bottom, #0f0f0f, #1a1a1a); 
+    height: 100vh; 
+    position: relative; 
+    padding: 20px; 
+    color: white; 
 }
-
-.window{
-position:absolute;
-width:600px;
-height:400px;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
-border-radius:10px;
-top:100px;
-left:100px;
+.taskbar { 
+    position: fixed; bottom: 0; left: 0; right: 0; 
+    height: 40px; background: rgba(0,0,0,0.9); 
+    display: flex; align-items: center; justify-content: space-between; 
+    padding: 0 20px; 
 }
-
-.hidden{display:none;}
-
-.title-bar{
-padding:10px;
-cursor:move;
-background:#222;
-display:flex;
-justify-content:space-between;
+.start-menu { cursor: pointer; padding: 10px; }
+.time { font-size: 14px; }
+.icon { 
+    display: inline-flex; flex-direction: column; align-items: center; 
+    cursor: pointer; margin: 20px; 
 }
-
-iframe{width:100%;height:300px;border:none;}
-
-.dock{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-display:flex;
-gap:15px;
-background:#0008;
-padding:10px;
-border-radius:20px;
+.icon img { width: 50px; height: 50px; border-radius: 10px; }
+.app-window { 
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+    width: 600px; height: 400px; background: white; border-radius: 10px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; 
 }
-
-.start-btn{
-position:fixed;
-left:20px;
-bottom:20px;
-background:#0008;
-padding:10px;
-cursor:pointer;
-}
-
-.start-menu{
-position:fixed;
-left:20px;
-bottom:70px;
-background:#000c;
-padding:10px;
-border-radius:10px;
-}
+.titlebar { background: #0078d4; color: white; padding: 10px; display: flex; justify-content: space-between; border-radius: 10px 10px 0 0; }
+.content { padding: 20px; height: calc(100% - 50px); overflow: auto; }
+.hidden { display: none !important; }
