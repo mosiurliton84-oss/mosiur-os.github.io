@@ -1,46 +1,63 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mosiur OS - Better than Windows 11</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Mosiur OS ULTRA PRO MAX</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="desktop" id="desktop">
-        <div class="taskbar">
-            <div class="start-menu">Start</div>
-            <div class="time" id="time"></div>
-        </div>
-        <div class="icon" onclick="openApp('gamehub')">
-            <img src="https://via.placeholder.com/50?text=GameHub" alt="GameHub">
-            <span>GameHub</span>
-        </div>
-        <div class="icon" onclick="openApp('browser')">
-            <img src="https://via.placeholder.com/50?text=Browser" alt="Browser">
-            <span>Browser</span>
-        </div>
+
+<div class="desktop" id="desktop">
+
+    <!-- Dock -->
+    <div class="dock">
+        <div onclick="openApp('browser')">🌐</div>
+        <div onclick="openApp('files')">📁</div>
+        <div onclick="openApp('notes')">📝</div>
+        <div onclick="openExternal('https://youtube.com')">▶</div>
     </div>
-    <div class="app-window hidden" id="gamehub">
-        <div class="titlebar">
-            <span>GameHub Emulator</span>
-            <button onclick="closeApp('gamehub')">X</button>
-        </div>
-        <div class="content">
-            <h2>Game Hub - Emulator</h2>
-            <p>এখানে EmulatorJS যোগ করুন: <a href="https://emulatorjs.org" target="_blank">EmulatorJS</a></p>
-            <!-- EmulatorJS embed করুন free-তে -->
-        </div>
+
+    <!-- Start -->
+    <div class="start-btn" onclick="toggleStart()">☰</div>
+
+    <div class="start-menu hidden" id="startMenu">
+        <div onclick="openApp('browser')">Browser</div>
+        <div onclick="openApp('files')">File Manager</div>
+        <div onclick="openApp('notes')">Notes</div>
     </div>
-    <div class="app-window hidden" id="browser">
-        <div class="titlebar">
-            <span>Web Browser</span>
-            <button onclick="closeApp('browser')">X</button>
-        </div>
-        <div class="content">
-            <iframe src="https://google.com" width="100%" height="400"></iframe>
-        </div>
+
+</div>
+
+<!-- Browser -->
+<div class="window hidden" id="browser">
+    <div class="title-bar" onmousedown="dragStart(event,'browser')">
+        🌐 Browser
+        <span onclick="closeApp('browser')">❌</span>
     </div>
-    <script src="script.js"></script>
+    <input id="url" placeholder="Search or URL">
+    <button onclick="go()">Go</button>
+    <iframe id="frame"></iframe>
+</div>
+
+<!-- Files -->
+<div class="window hidden" id="files">
+    <div class="title-bar" onmousedown="dragStart(event,'files')">
+        📁 Files
+        <span onclick="closeApp('files')">❌</span>
+    </div>
+    <p style="padding:10px;">Drag & Drop coming soon 😎</p>
+</div>
+
+<!-- Notes App -->
+<div class="window hidden" id="notes">
+    <div class="title-bar" onmousedown="dragStart(event,'notes')">
+        📝 Notes
+        <span onclick="closeApp('notes')">❌</span>
+    </div>
+    <textarea id="noteArea" placeholder="Write something..."></textarea>
+    <button onclick="saveNote()">Save</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
