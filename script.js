@@ -1,54 +1,89 @@
-function openApp(id){
-document.getElementById(id).classList.remove('hidden');
+// Clock
+function updateTime() {
+    document.getElementById('time').textContent = new Date().toLocaleTimeString('bn-BD');
+}
+setInterval(updateTime, 1000); updateTime();
+
+// Window Controls
+function openApp(appId) {
+    document.getElementById(appId).classList.remove('hidden');
+    document.getElementById(appId).classList.add('active');
 }
 
-function closeApp(id){
-document.getElementById(id).classList.add('hidden');
+function closeApp(appId) {
+    document.getElementById(appId).classList.remove('active');
+    document.getElementById(appId).classList.add('hidden');
 }
 
-function openExternal(url){
-window.open(url,'_blank');
+function minimizeApp(appId) {
+    document.getElementById(appId).style.display = 'none';
 }
 
-function go(){
-let url=document.getElementById('url').value;
-if(!url.startsWith('http')){
-url='https://www.google.com/search?q='+url;
-}
-document.getElementById('frame').src=url;
-}
-
-function saveNote(){
-localStorage.setItem('note',document.getElementById('noteArea').value);
-alert('Saved!');
-}
-
-window.onload=function(){
-let note=localStorage.getItem('note');
-if(note) document.getElementById('noteArea').value=note;
+function maximizeApp(appId) {
+    const app = document.getElementById(appId);
+    if (app.style.width === '95vw') {
+        app.style.width = '800px'; app.style.height = '600px';
+        app.style.transform = 'translate(-50%, -50%)';
+    } else {
+        app.style.width = '95vw'; app.style.height = '95vh';
+        app.style.transform = 'none';
+        app.style.left = '2.5vw';
+        app.style.top = '2.5vh';
+    }
 }
 
-let current=null,ox=0,oy=0;
-
-function dragStart(e,id){
-current=document.getElementById(id);
-ox=e.clientX-current.offsetLeft;
-oy=e.clientY-current.offsetTop;
-document.onmousemove=drag;
-document.onmouseup=stop;
+function toggleStartMenu() {
+    const startMenu = document.querySelector('.start-menu');
+    startMenu.style.background = 'rgba(255,255,255,0.25)';
+    setTimeout(() => startMenu.style.background = '', 200);
 }
 
-function drag(e){
-if(current){
-current.style.left=(e.clientX-ox)+'px';
-current.style.top=(e.clientY-oy)+'px';
-}
+// External Links (iframe bypass)
+function openExternal(url) {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    tabBtns.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    const urlSpan = document.getElementById('current-url');
+    const hostname = new URL(url).hostname;
+    urlSpan.textContent = '🔗 Opening ' + hostname;
+    
+    // New tab এ খুলবে
+    window.open(url, '_blank');
 }
 
-function stop(){
-document.onmousemove=null;
+// Drag Windows
+let draggedElement = null, offsetX = 0, offsetY = 0;
+function startDrag(e, appId) {
+    draggedElement = document.getElementById(appId);
+    const rect = draggedElement.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', stopDrag);
 }
 
-function toggleStart(){
-document.getElementById('startMenu').classList.toggle('hidden');
+function drag(e) {
+    if (draggedElement) {
+        draggedElement.style.position = 'fixed';
+        draggedElement.style.left = (e.clientX - offsetX) + 'px';
+        draggedElement.style.top = (e.clientY - offsetY) + 'px';
+        draggedElement.style.transform = 'none';
+        draggedElement.style.margin = '0';
+    }
 }
+
+function stopDrag() {
+    document.removeEventListener('mousemove', drag);
+    document.removeEventListener('mouseup', stopDrag);
+    draggedElement = null;
+}
+
+// ESC to close all apps
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.app-window.active').forEach(app => {
+            closeApp(app.id);
+        });
+    }
+});
